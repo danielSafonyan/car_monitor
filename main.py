@@ -46,16 +46,15 @@ for page_num in range(1, num_pages + 1):
 
     for result in page_results:
         # img_src = result.find('img')['src']
-
+        link = 'https://www.autoscout24.com' + result.find('div', class_='ListItem_header__uPzec').find('a')['href']
         title = "Ford Mustang " + result.find('span', class_='ListItem_version__jNjur').get_text()
         price = result.find('p', class_='Price_price__WZayw').get_text()
         mileage = result.find('span', class_='VehicleDetailTable_item__koEV4').get_text()
         this_car = {
             'title': title,
+            'link': link,
             # 'img_src': img_src,
             'price': price,
             'mileage': mileage
         }
         mustang_list.append(this_car)
-
-
