@@ -111,22 +111,19 @@ class Mustang:
                   f'page={page_num}'
             print(url)
             soup = get_soup(url)
-            page_results = soup.find_all('div', class_='ListItem_wrapper__J_a_C')
 
+            page_results = soup.find_all('div', class_='ListItem_wrapper__J_a_C')
             for result in page_results:
                 # img_src = result.find('img')['src']
                 url = 'https://www.autoscout24.com' + result.find('div', class_='ListItem_header__uPzec').find('a')[
                     'href']
-                title = "Ford Mustang " + result.find('span', class_='ListItem_version__jNjur').get_text()
-                price = result.find('p', class_='Price_price__WZayw').get_text()
                 attributes = result.find_all('span', class_='VehicleDetailTable_item__koEV4')
                 Mustang(
-                    title=title,
+                    title="Ford Mustang " + result.find('span', class_='ListItem_version__jNjur').get_text(),
                     url=url,
-                    price=price,
+                    price=result.find('p', class_='Price_price__WZayw').get_text(),
                     mileage=attributes[0].get_text(),
                     year=attributes[1].get_text().split('/')[1],
                     owners=attributes[4].get_text().split()[0]
                 )
-
 
