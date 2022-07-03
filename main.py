@@ -2,8 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import sys
 
-url = f'https://www.autoscout24.com/lst/ford/mustang/bt_coupe?' \
-      f'fregfrom=2015&fregto=2018&kmto=50000&body=3&sort=price&desc=0&bcol=14%2C11&&page=1'
+url = f'https://www.autoscout24.com/lst/ford/mustang/bt_coupe?fregfrom=2015&fregto=2018&kmto=50000&body=3&sort=price&desc=0&bcol=14%2C11&&page=1'
 headers = {'Accept-Language': 'en-US,en;q=0.5'}
 
 
