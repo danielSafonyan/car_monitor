@@ -8,8 +8,8 @@ import csv
 class CarLinkExtractor:
     __all_links = []
     __car_dicts = []
-    __url = f'https://www.autoscout24.com/lst/ford/mustang/bt_coupe?' \
-          f'fregfrom=2015&fregto=2018&kmto=50000&body=3&sort=price&desc=0&bcol=14%2C11&&page=1'
+    __url = f"https://www.autoscout24.com/lst/ford/mustang/bt_coupe?" \
+            f"fregfrom=2015&fregto=2018&kmto=50000&body=3&sort=price&desc=0&bcol=14%2C11&&page=1"
 
     __num_offers = None
     __num_pages = None
@@ -50,7 +50,6 @@ class CarLinkExtractor:
         else:
             sys.exit(f"Didn't find any offers for Ford Mustang.")
 
-
     @classmethod
     def __extract_links(cls):
         for page_num in range(1, cls.__num_pages + 1):
@@ -59,15 +58,15 @@ class CarLinkExtractor:
             soup = cls.__get_soup(url)
             page_results = soup.find_all('div', class_='ListItem_wrapper__J_a_C')
             for result in page_results:
-                link = 'https://www.autoscout24.com' + result.find('div', class_='ListItem_header__uPzec').find('a')['href']
+                link = 'https://www.autoscout24.com' \
+                       + result.find('div', class_='ListItem_header__uPzec').find('a')['href']
                 cls.__all_links.append(link)
-
 
     @classmethod
     def __get_year(cls, vehicle_overview, link):
         try:
             year = vehicle_overview[2].get_text().split('/')[1]
-        except Exception as ex:
+        except Exception:
             print("Couldn't get a year!")
             print(link)
             return 0
@@ -94,7 +93,6 @@ class CarLinkExtractor:
         except ValueError:
             print(f'Mileage should be a real number, not {mileage}.')
             return 0
-
 
     @classmethod
     def __get_price(cls, soup, link):
@@ -166,7 +164,6 @@ class CarLinkExtractor:
             cls.__car_dicts.append(this_car)
         print('\nFinished extracting links.')
 
-
     @classmethod
     def save_to_csv(cls):
         cls.__extract_car_info()
@@ -178,8 +175,5 @@ class CarLinkExtractor:
                 writer.writerow(car)
         print('Finished writing to csv.')
 
+
 CarLinkExtractor.save_to_csv()
-
-
-
-
