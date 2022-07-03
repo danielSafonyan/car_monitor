@@ -154,6 +154,7 @@ class CarLinkExtractor:
                 print(link)
 
             this_car = {
+                'link': link,
                 'specification': specification,
                 'location': location,
                 'price': price,
@@ -170,7 +171,7 @@ class CarLinkExtractor:
     def save_to_csv(cls):
         cls.__extract_car_info()
         with open('mustangs.csv', 'w') as file:
-            fieldnames = ['specification', 'location', 'price', 'mileage', 'year', 'img_url']
+            fieldnames = ['link', 'specification', 'location', 'price', 'mileage', 'year', 'img_url']
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             writer.writeheader()
             for car in CarLinkExtractor.__car_dicts:

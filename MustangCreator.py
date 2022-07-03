@@ -9,7 +9,8 @@ class Mustang:
     def get_mustang_list(cls):
         return copy.deepcopy(cls.__all_mustangs)
 
-    def __init__(self, specification, location, price, mileage, year, img_url):
+    def __init__(self, link, specification, location, price, mileage, year, img_url):
+        self.link = link
         self.__specification = specification
         self.__location = location
         self.__price = price
@@ -32,6 +33,7 @@ class Mustang:
             csv_reader = csv.DictReader(file)
             for line in csv_reader:
                 Mustang(
+                    link=line['link'],
                     specification=line['specification'],
                     location=line['location'],
                     price=line['price'],
