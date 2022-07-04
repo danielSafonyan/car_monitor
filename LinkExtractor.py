@@ -3,6 +3,8 @@ import requests
 import sys
 import time
 import csv
+import socket
+
 
 
 class CarLinkExtractor:
