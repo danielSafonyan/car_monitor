@@ -1,3 +1,0 @@
-import string
-help(string)
-
